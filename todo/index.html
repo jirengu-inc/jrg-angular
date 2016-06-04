@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Todo</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="bower_components/angular/angular-csp.css">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="styles/app.css">
-  </head>
-  <body ng-app="todo" class="container" ng-cloak>
-    <h1 class="appname">{{ 'Todo' }}</h1>
-    
-    <div ng-controller="TodoController">
-      <ol class="todos">
-        <li class="todo" ng-repeat="todo in todos">
-          {{ todo.text }}
+
+<head>
+  <title>Todo</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="bower_components/angular/angular-csp.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+
+<body ng-app="todo" class="container" ng-cloak>
+  <h1 class="appname">{{ 'Todo' }}</h1>
+
+  <div ng-controller="TodoController">
+    <ol class="todos">
+      <li ng-class="{ 'done': todo.done }"  class="todo" ng-repeat="todo in todos">
+        <div ng-hide="todo.editing">
+          <input type="checkbox" ng-model="todo.done" ng-change="doneTodo(todo)">
+          <span class="text" ng-dblclick="editTodo(todo)">{{ todo.text }}</span>
           <span class="pull-right glyphicon glyphicon-remove" ng-click="removeTodo($index)"></span>
-        </li>
-      </ol>
-      
+        </div>
+        <form ng-submit="updateTodo(todo, $index)">
+          <input type="text" class="form-control" ng-model="todo.text" ng-show="todo.editing">
+        </form>
+      </li>
+    </ol>
+
+    <form class="todo-form" ng-submit="addTodo()">
       <div class="form-group">
-        <input type="text" class="form-control" ng-model="todo">  
+        <input type="text" class="form-control" ng-model="todo">
       </div>
       <div class="form-group">
-        <button class="btn btn-block btn-success" ng-click="addTodo()">Add</button>
+        <button class="btn btn-block btn-success">Add</button>
       </div>
-      
-    </div>
-     
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="scripts/app.js"></script>
-  </body>
+    </form>
+
+  </div>
+
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+
 </html>
