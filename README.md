@@ -5,6 +5,7 @@ TOM,
 
 ## 课程大纲
 
+查看 https://docs.angularjs.org/guide
 
 
 
