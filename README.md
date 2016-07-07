@@ -5,7 +5,9 @@ TOM,
 
 ## 课程大纲
 
-查看 https://docs.angularjs.org/guide
+查看
+* https://docs.angularjs.org/guide
+* https://docs.angularjs.org/api/
 
 
 
